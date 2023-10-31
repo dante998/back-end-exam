@@ -1,0 +1,59 @@
+uuid: a84082ae-135f-4e38-aa56-7cfae0c21df8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_referenced_resources
+    - node.type.course
+    - paragraphs.paragraphs_type.call_to_action
+    - paragraphs.paragraphs_type.media
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.course.field_referenced_resources
+field_name: field_referenced_resources
+entity_type: node
+bundle: course
+label: 'Referenced resources'
+description: "○ Text: rich text editor (WYSIWYG)\r\n○ Media: allowed media types - video, image\r\n○ Call to action: call to action component with title, description and link fields.\r\n"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      media: media
+      call_to_action: call_to_action
+    negate: 0
+    target_bundles_drag_drop:
+      call_to_action:
+        weight: -17
+        enabled: true
+      from_library:
+        weight: -16
+        enabled: false
+      image_text:
+        weight: -15
+        enabled: false
+      images:
+        weight: -14
+        enabled: false
+      media:
+        weight: -18
+        enabled: true
+      nested_paragraph:
+        weight: -13
+        enabled: false
+      text:
+        weight: -19
+        enabled: true
+      text_image:
+        weight: -12
+        enabled: false
+      user:
+        weight: -11
+        enabled: false
+field_type: entity_reference_revisions

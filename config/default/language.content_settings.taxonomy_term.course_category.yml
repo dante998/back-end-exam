@@ -1,0 +1,11 @@
+uuid: 42cae0f2-28f0-4389-a033-d59d7b568307
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_category
+id: taxonomy_term.course_category
+target_entity_type_id: taxonomy_term
+target_bundle: course_category
+default_langcode: site_default
+language_alterable: false

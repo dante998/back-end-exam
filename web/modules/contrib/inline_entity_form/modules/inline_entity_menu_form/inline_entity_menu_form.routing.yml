@@ -1,0 +1,7 @@
+inline_entity_menu_form.menu.edit_links_form:
+  path: '/admin/structure/menu/manage-links/{menu}'
+  defaults:
+    _entity_form: 'menu.links'
+    _title_callback: '\Drupal\menu_ui\Controller\MenuController::menuTitle'
+  requirements:
+    _entity_access: 'menu.update'

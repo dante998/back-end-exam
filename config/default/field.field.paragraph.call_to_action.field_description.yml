@@ -1,0 +1,24 @@
+uuid: 44e88681-df67-4cc0-ac38-f3274a8a3e9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.call_to_action
+  module:
+    - text
+id: paragraph.call_to_action.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: call_to_action
+label: Description
+description: "Call to action: call to action component with title, description, and link fields.\r\n"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

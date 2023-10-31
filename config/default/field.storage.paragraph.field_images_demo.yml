@@ -1,0 +1,32 @@
+uuid: 261181d9-7084-4687-9cef-e4e9a3ac5e5a
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - paragraphs
+_core:
+  default_config_hash: '-kPM5bWqlm1xzMxZf46_2dvJguXOTJjed90FqzQRlo0'
+id: paragraph.field_images_demo
+field_name: field_images_demo
+entity_type: paragraph
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

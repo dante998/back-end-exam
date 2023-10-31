@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Provides hooks and helper functions for the inline entity form test module.
+ */
+
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_ief_simple_single_form.
+ *
+ * Adds an element and a button to update the element via AJAX.
+ */
+function inline_entity_form_test_form_node_ief_simple_single_form_alter(&$form, FormStateInterface $form_state) {
+  $form['ajax_value'] = [
+    '#id' => 'ajax-value',
+    '#type' => 'item',
+    '#title' => t('Ajax value'),
+    '#markup' => 'bar',
+  ];
+  $form['actions']['ajax_no_submit_callback'] = [
+    '#type' => 'button',
+    '#value' => t('No submit callbacks'),
+    '#ajax' => ['callback' => 'inline_entity_form_test_ajax_callback'],
+  ];
+}
+
+/**
+ * AJAX callback handler for node_ief_simple_single_form.
+ */
+function inline_entity_form_test_ajax_callback(array &$form, FormStateInterface $form_state) {
+  $item = [
+    '#type' => 'item',
+    '#title' => t('Ajax value'),
+    '#markup' => 'AJAX complete',
+  ];
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#ajax-value', $item));
+  return $response;
+}

@@ -1,0 +1,13 @@
+name: Inline Entity Menu Form
+description: "Provides a widget for inline management (creation, modification, removal) of referenced menu entity. "
+type: module
+package: Fields
+core_version_requirement: ^9.1 || ^10
+dependencies:
+  - drupal:inline_entity_form
+  - drupal:menu_ui
+
+# Information added by Drupal.org packaging script on 2023-09-12
+version: '2.0.0-rc9'
+project: 'inline_entity_form'
+datestamp: 1694533811

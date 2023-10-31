@@ -1,0 +1,44 @@
+uuid: 841f34be-dd99-4fe7-91ed-0bf0c22da5b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_text.field_image_demo
+    - field.field.paragraph.image_text.field_text_demo
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.image_text
+  module:
+    - image
+    - text
+_core:
+  default_config_hash: 7G47whEBa8S9ncln-3j_l2DnPrSKIw5gIKVNZeCnZTg
+id: paragraph.image_text.default
+targetEntityType: paragraph
+bundle: image_text
+mode: default
+content:
+  field_image_demo:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_text_demo:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

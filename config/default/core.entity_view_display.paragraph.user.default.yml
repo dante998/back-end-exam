@@ -1,0 +1,26 @@
+uuid: 4f1cf128-6062-4fc8-942f-18fbaa569b51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.user.field_user_demo
+    - paragraphs.paragraphs_type.user
+_core:
+  default_config_hash: lnkn109axN_p0s-F9NH4awny0ORtlmBkffTR76pNT6Q
+id: paragraph.user.default
+targetEntityType: paragraph
+bundle: user
+mode: default
+content:
+  field_user_demo:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  search_api_excerpt: true
+  uid: true

@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * The inline entity menu form module.
+ *
+ * Provides a widget for inline management (creation, modification, removal) of
+ * referenced menu entity. The primary use case is the parent -> children one
+ * (for example, order -> line items), where the child entities are never
+ * managed outside the parent form.
+ */
+
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseDialogCommand;
+use Drupal\Core\Ajax\OpenModalDialogCommand;
+use Drupal\Core\Entity\EntityFormInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\menu_item_extras\Entity\MenuItemExtrasMenuLinkContentInterface;
+
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function inline_entity_menu_form_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $formObject = $form_state->getFormObject();
+  $formName = '';
+  if ($formObject instanceof EntityFormInterface && $formObject->getEntity() instanceof MenuItemExtrasMenuLinkContentInterface) {
+    $formName = $formObject->getEntity()->get('menu_name')->value;
+  }
+  if (in_array($form_id, [
+    'menu_link_content_menu_link_content_form',
+    'menu_link_content_menu_link_content_delete_form',
+    'menu_link_content_' . $formName . '_form',
+    'menu_link_content_' . $formName . '_delete_form',
+  ], true)) {
+    $input = $form_state->getUserInput();
+    if (!empty($input['_drupal_ajax'])) {
+      $form['actions']['submit']['#submit'][] = '_inline_entity_menu_form_ajax_submit_reopen';
+      $form['actions']['submit']['#attributes']['class'][] = 'use-ajax-submit';
+      $form['actions']['delete']['#access'] = FALSE;
+    }
+  }
+}
+
+
+/**
+ * Close the Modal and reopen the Modal with edit links menu.
+ *
+ * @param array $form
+ *   The form that will be altered.
+ * @param FormStateInterface $form_state
+ *   FormState Object.
+ */
+function _inline_entity_menu_form_ajax_submit_reopen(array $form, FormStateInterface &$form_state) {
+  $response = new AjaxResponse();
+  $menu = $form_state->getFormObject()->getEntity()->getMenuName();
+  $menu_link = Drupal::service('entity_type.manager')
+    ->getStorage('menu')
+    ->load($menu);
+  $formElement = Drupal::service('entity.form_builder')->getForm($menu_link, 'links');
+  $url = Url::fromRoute('inline_entity_menu_form.menu.edit_links_form', ['menu' => $menu]);
+  $formElement['#action'] = $url->toString();
+
+  $response->addCommand(new CloseDialogCommand('#drupal-dialog'));
+  $response->addCommand(new OpenModalDialogCommand(t('Edit Links'), $formElement, [
+    'modal' => TRUE,
+    'width' => 800
+  ]));
+  $form_state->setResponse($response);
+}
+
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function inline_entity_menu_form_entity_type_build(array &$entity_types) {
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+  $entity_types['menu']
+    ->setFormClass('links', 'Drupal\inline_entity_menu_form\MenuFormLB');
+}
+
+function inline_entity_menu_form_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
+  if ($entity_form['#entity_type'] === 'menu') {
+    $entity_form['links']['#access'] = FALSE;
+  }
+}

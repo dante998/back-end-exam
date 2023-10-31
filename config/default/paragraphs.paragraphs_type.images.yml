@@ -1,0 +1,12 @@
+uuid: e8b606e3-f3eb-4db2-a590-4c0b0bdf87c5
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DGb4aV39gpvoK2px2xeeK4MOLA2FxH4Leq0UZ0en9Fo
+id: images
+label: Images
+icon_uuid: null
+icon_default: null
+description: 'Use <em>Images</em> for adding one or multiple images.'
+behavior_plugins: {  }

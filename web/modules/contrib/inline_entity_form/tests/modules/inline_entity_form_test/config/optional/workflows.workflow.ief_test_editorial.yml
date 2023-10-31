@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ief_test_complex
+    - node.type.ief_reference_type
+  module:
+    - content_moderation
+id: ief_test_editorial
+label: 'IEF Test Editorial'
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      published: false
+      default_revision: true
+      label: Archived
+      weight: 2
+    draft:
+      label: Draft
+      published: false
+      default_revision: false
+      weight: 0
+    published:
+      label: Published
+      published: true
+      default_revision: true
+      weight: 1
+  transitions:
+    archive:
+      label: Archive
+      from:
+        - published
+      to: archived
+      weight: 2
+    archived_draft:
+      label: 'Restore to Draft'
+      from:
+        - archived
+      to: draft
+      weight: 3
+    archived_published:
+      label: Restore
+      from:
+        - archived
+      to: published
+      weight: 4
+    create_new_draft:
+      label: 'Create New Draft'
+      to: draft
+      weight: 0
+      from:
+        - draft
+        - published
+    publish:
+      label: Publish
+      to: published
+      weight: 1
+      from:
+        - draft
+        - published
+  entity_types:
+    node:
+      - ief_test_complex
+      - ief_reference_type
+  default_moderation_state: draft

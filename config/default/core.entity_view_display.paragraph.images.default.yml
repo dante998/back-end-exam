@@ -1,0 +1,30 @@
+uuid: 7b41d590-9430-480b-9e91-7f09ec9eaf0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.images.field_images_demo
+    - image.style.medium
+    - paragraphs.paragraphs_type.images
+  module:
+    - image
+_core:
+  default_config_hash: SrcUVnFWa_fwHjrESiGfJISl0JVktNYE7j3YSPRGybY
+id: paragraph.images.default
+targetEntityType: paragraph
+bundle: images
+mode: default
+content:
+  field_images_demo:
+    type: image
+    label: hidden
+    settings:
+      image_link: file
+      image_style: medium
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  search_api_excerpt: true
+  uid: true

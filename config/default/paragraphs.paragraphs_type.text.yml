@@ -1,0 +1,12 @@
+uuid: b014d378-4df7-424a-b490-be40c7f32128
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: boOxRvu533PdazqquOAQhGK6j7P-QrZ01_6rKpuO9XM
+id: text
+label: Text
+icon_uuid: null
+icon_default: null
+description: "Text: rich text editor (WYSIWYG)\r\n"
+behavior_plugins: {  }

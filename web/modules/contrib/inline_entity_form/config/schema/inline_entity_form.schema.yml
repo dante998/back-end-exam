@@ -1,0 +1,104 @@
+# Schema for the Inline Entity Reference module display settings.
+
+field.widget.settings.inline_entity_form_simple:
+  type: mapping
+  label: 'Inline entity reference display format settings'
+  mapping:
+    form_mode:
+      type: string
+      label: "Form mode"
+    override_labels:
+      type: boolean
+      label: "Override labels"
+    label_singular:
+      type: label
+      label: "Label (singular)"
+    label_plural:
+      type: label
+      label: "Label (plural)"
+    allow_new:
+      type: boolean
+      label: "Allow new"
+    allow_existing:
+      type: boolean
+      label: "Allow existing"
+    add_existing_widget:
+      type: string
+      label: "Add-existing widget"
+    match_operator:
+      type: string
+      label: "Match operator"
+    hide_fieldset:
+      type: boolean
+      label: "Hide fieldset"
+    hide_title:
+      type: boolean
+      label: "Hide title"
+    collapsible:
+      type: boolean
+      label: "Collapsible"
+    collapsed:
+      type: boolean
+      label: "Collapsed by default"
+    revision:
+      type: boolean
+      label: "Create new revision"
+    auto_open_edit_form:
+      type: boolean
+      label: "Auto-open edit form"
+    removed_reference:
+      type: string
+      label: "Keep or delete unreferenced items"
+
+field.widget.settings.inline_entity_form_complex:
+  type: mapping
+  label: 'Inline entity reference display format settings'
+  mapping:
+    form_mode:
+      type: string
+      label: "Form mode"
+    override_labels:
+      type: boolean
+      label: "Override labels"
+    label_singular:
+      type: label
+      label: "Label (singular)"
+    label_plural:
+      type: label
+      label: "Label (plural)"
+    auto_open:
+      type: boolean
+      label: "Automatically open entity creation form"
+    allow_new:
+      type: boolean
+      label: "Allow new"
+    allow_existing:
+      type: boolean
+      label: "Allow existing"
+    allow_edit:
+      type: boolean
+      label: "Allow edit"
+    match_operator:
+      type: string
+      label: "Match operator"
+    allow_duplicate:
+      type: boolean
+      label: "Allow duplicate"
+    hide_fieldset:
+      type: boolean
+      label: "Hide fieldset"
+    hide_title:
+      type: boolean
+      label: "Hide title"
+    collapsible:
+      type: boolean
+      label: "Collapsible"
+    collapsed:
+      type: boolean
+      label: "Collapsed by default"
+    revision:
+      type: boolean
+      label: "Create new revision"
+    removed_reference:
+      type: string
+      label: "Keep or delete unreferenced items"

@@ -1,0 +1,8 @@
+uuid: 1f296733-5108-48f7-bd9e-5b1794fb4a17
+langcode: en
+status: true
+dependencies: {  }
+name: 'Course category'
+vid: course_category
+description: 'Course categories - subject, level, and department.'
+weight: 0

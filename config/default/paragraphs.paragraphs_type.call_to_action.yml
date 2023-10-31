@@ -1,0 +1,10 @@
+uuid: f2990cd6-e866-4c67-8579-a1cbd0abe868
+langcode: en
+status: true
+dependencies: {  }
+id: call_to_action
+label: 'Call to action'
+icon_uuid: null
+icon_default: null
+description: "Call to action: call to action component with title, description, and link fields.\r\n"
+behavior_plugins: {  }

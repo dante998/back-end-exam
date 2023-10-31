@@ -1,0 +1,10 @@
+uuid: 1931271a-0e56-46a5-a6a0-951fe03c5896
+langcode: en
+status: true
+dependencies: {  }
+id: media
+label: Media
+icon_uuid: null
+icon_default: null
+description: "Media: allowed media types - video, image.\r\n"
+behavior_plugins: {  }

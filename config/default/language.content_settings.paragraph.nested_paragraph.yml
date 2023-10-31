@@ -1,0 +1,20 @@
+uuid: 590678c5-1afa-481d-97f1-34624ed0dcbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.nested_paragraph
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '1'
+_core:
+  default_config_hash: RWzU6DDP87cwF7gBDUTaS7aZfVYFg6ePJ9_chhVClz8
+id: paragraph.nested_paragraph
+target_entity_type_id: paragraph
+target_bundle: nested_paragraph
+default_langcode: site_default
+language_alterable: true
