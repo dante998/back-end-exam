@@ -1,0 +1,11 @@
+uuid: f7b20cb1-3dc8-4404-a8c2-e4be2771c29e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.instructor
+id: node.instructor
+target_entity_type_id: node
+target_bundle: instructor
+default_langcode: site_default
+language_alterable: false

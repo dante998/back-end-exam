@@ -1,6 +1,6 @@
 name: Add courses
 type: module
-description: Creates an add content of a course type link.
+description: Creates an add content button of a course type.
 package: Custom
 core_version_requirement: ^9 || ^10
 

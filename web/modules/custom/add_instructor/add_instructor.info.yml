@@ -1,0 +1,5 @@
+name: Add instructors
+type: module
+description: Creates an add content button of a instructor type.
+package: Custom
+core_version_requirement: ^9 || ^10

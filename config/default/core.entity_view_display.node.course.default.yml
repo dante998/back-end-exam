@@ -45,12 +45,12 @@ content:
     weight: 104
     region: content
   field_instructor:
-    type: string
+    type: entity_reference_label
     label: above
     settings:
-      link_to_entity: false
+      link: true
     third_party_settings: {  }
-    weight: 102
+    weight: 107
     region: content
   field_referenced_resources:
     type: entity_reference_revisions_entity_view

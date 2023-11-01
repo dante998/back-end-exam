@@ -1,0 +1,21 @@
+uuid: 54e25e20-30a6-40fa-8675-a2f42e653d3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_information
+    - node.type.instructor
+  module:
+    - telephone
+id: node.instructor.field_contact_information
+field_name: field_contact_information
+entity_type: node
+bundle: instructor
+label: 'Contact information'
+description: 'Instructor`s contact information.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

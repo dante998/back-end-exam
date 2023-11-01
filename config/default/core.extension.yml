@@ -3,6 +3,7 @@ _core:
 module:
   add_course: 0
   add_courses: 0
+  add_instructor: 0
   admin_toolbar: 0
   admin_toolbar_links_access_filter: 0
   admin_toolbar_search: 0
@@ -20,6 +21,9 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
+  devel: 0
+  devel_generate: 0
+  devel_php: 0
   dynamic_page_cache: 0
   editor: 0
   entity_browser: 0
@@ -55,6 +59,7 @@ module:
   sqlite: 0
   system: 0
   taxonomy: 0
+  telephone: 0
   text: 0
   toolbar: 0
   tour: 0

@@ -1,0 +1,8 @@
+add_instructor.add_article_content:
+ route_name: node.add
+ title: "Add content of a Instructor"
+ appears_on:
+   - "view.instructor_overview.page_1"
+ route_parameters:
+  node_type: instructor
+

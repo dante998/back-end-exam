@@ -1,19 +1,29 @@
-uuid: 22191ead-f9db-4750-8e63-dbafba35a664
+uuid: d3a8f9c9-ff38-4600-a9f1-48b77e52b311
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_instructor
     - node.type.course
+    - node.type.instructor
 id: node.course.field_instructor
 field_name: field_instructor
 entity_type: node
 bundle: course
 label: Instructor
-description: 'This is the instructor of the course.'
-required: false
+description: 'Instructor reference field  which associate instructors with the courses they teach.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      instructor: instructor
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

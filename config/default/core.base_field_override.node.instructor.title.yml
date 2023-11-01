@@ -1,0 +1,18 @@
+uuid: d9c16f34-6306-42fd-8b21-34789496f2b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.instructor
+id: node.instructor.title
+field_name: title
+entity_type: node
+bundle: instructor
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: 8deae9b4-9077-42d3-b5f5-95ad9a9e223f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bio
+    - node.type.instructor
+  module:
+    - text
+id: node.instructor.field_bio
+field_name: field_bio
+entity_type: node
+bundle: instructor
+label: Bio
+description: 'The instructor`s bio.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

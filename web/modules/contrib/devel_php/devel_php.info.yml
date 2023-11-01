@@ -1,0 +1,13 @@
+name: 'Devel PHP'
+type: module
+description: 'Re-add Execute PHP feature to Devel.'
+core_version_requirement: ^9.2 || ^10
+package: 'Development'
+php: 7.4
+dependencies:
+  - devel:devel
+
+# Information added by Drupal.org packaging script on 2022-04-08
+version: '8.x-1.5'
+project: 'devel_php'
+datestamp: 1649422112

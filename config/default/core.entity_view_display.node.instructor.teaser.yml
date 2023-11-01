@@ -1,0 +1,26 @@
+uuid: 26f9676d-ff97-4c9d-a2f6-a28207512b96
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.instructor.field_bio
+    - field.field.node.instructor.field_contact_information
+    - node.type.instructor
+  module:
+    - user
+id: node.instructor.teaser
+targetEntityType: node
+bundle: instructor
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_bio: true
+  field_contact_information: true
+  langcode: true
+  search_api_excerpt: true
