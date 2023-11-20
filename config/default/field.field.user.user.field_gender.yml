@@ -1,0 +1,30 @@
+uuid: 9d0e4329-6e9f-4f32-aab3-77c9af27d6fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_gender
+    - taxonomy.vocabulary.gender
+  module:
+    - user
+id: user.user.field_gender
+field_name: field_gender
+entity_type: user
+bundle: user
+label: Gender
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      gender: gender
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for select_registration_roles.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\user\Entity\User;
+
+/**
+ * Get all Roles.
+ *
+ * @param bool $membersonly
+ *   Boolean passed to get_roles().
+ *
+ * @return array
+ *   Returns an array of roles.
+ */
+function select_registration_roles_all_roles(bool $membersonly = TRUE) {
+  $roles = user_roles($membersonly);
+  $all_roles = [];
+  foreach ($roles as $role_id => $role) {
+    $all_roles[$role_id] = $role->label();
+  }
+  return $all_roles;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function select_registration_roles_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $currentUser = \Drupal::currentUser();
+
+  if ($form_id == "user_register_form" && !$currentUser->hasPermission('administer permissions')) {
+    $roles = [];
+    $config = \Drupal::configFactory()
+      ->getEditable('select_registration_roles.settings');
+    $display_roles = $config->get('select_registration_roles_setby_admin');
+    // You can re-save empty form, so we have to filter empty roles.
+    foreach ($display_roles as $key => $value) {
+      if (!$value) {
+        unset($display_roles[$key]);
+      }
+    }
+    if (empty($display_roles)) {
+      $form['select_roles'] = [
+        '#type' => 'checkboxes',
+        '#title' => t('You must configure <a href =":configure">role field on the registration form.</a>', [
+          ':configure' => Url::fromRoute('select_registration_roles.roles_set_by_admin')
+            ->toString(),
+        ]),
+        '#options' => $roles,
+        '#attributes' => ['class' => ['select-registration-roles']],
+      ];
+    }
+    else {
+      $approval_roles = $config->get('select_registration_roles_admin_approval');
+      $display_roles = $config->get('select_registration_roles_setby_admin');
+      $all_roles = select_registration_roles_all_roles(TRUE);
+
+      foreach ($display_roles as $role_id => $role) {
+        if (!empty($role)) {
+          $role_name = $all_roles[$role_id];
+          if ($approval_roles[$role_id] === $role) {
+            $role_name .= t("<i>*needs administration approval</i>");
+          }
+          $roles[$role_id] = $role_name;
+        }
+
+      }
+      $form['select_roles'] = [
+        '#type' => $config->get('select_registration_roles_multiple') ? 'checkboxes' : 'radios',
+        '#title' => t('Choose a role'),
+        '#options' => $roles,
+        '#attributes' => ['class' => ['select-registration-roles']],
+        '#required' => $config->get('select_registration_roles_required'),
+      ];
+    }
+    $form['actions']['submit']['#submit'][] = 'select_registration_roles_form_submit';
+  }
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function select_registration_roles_form_submit(&$form, FormStateInterface $form_state) {
+  $uid = $form_state->getValues()['uid'];
+
+  // Allow select multiple roles.
+  if (is_string($form_state->getValue('select_roles'))) {
+    $select_roles[$form_state->getValue('select_roles')] = $form_state->getValue('select_roles');
+  }
+  else {
+    $select_roles = $form_state->getValue('select_roles');
+  }
+  if (!$select_roles) {
+    return;
+  }
+  $config = \Drupal::config('select_registration_roles.settings');
+  $user_config = \Drupal::config('user.settings');
+
+  $approval_roles = $config->get('select_registration_roles_admin_approval');
+
+  // Default user can be active.
+  $set_blocked = FALSE;
+
+  // Set blocked if required globally administrator approval.
+  if ($user_config->get('register') === 'visitors_admin_approval') {
+    $set_blocked = TRUE;
+  }
+
+  $user = User::load($uid);
+  if ($user !== NULL) {
+    foreach ($select_roles as $role_id => $role_name) {
+      if (!empty($role_name)) {
+        $user->addRole($role_id);
+
+        // If one of selected roles required approval, set to blocked.
+        if (!empty($approval_roles[$role_id])) {
+          $set_blocked = TRUE;
+        }
+      }
+    }
+
+    if ($set_blocked) {
+      $user->block();
+    }
+    else {
+      $user->activate();
+    }
+
+    $user->save();
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function select_registration_roles_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'registration':
+      // note: data can be passed to this function in the $params array.
+      $output = t("Name: @name", ['@name' => $params['username']]);
+      $output .= t("has requested a role that need your confirmation.");
+      $output .= t("Role(s) that need your approvals:");
+      $message['subject'] = t('New Roles Request');
+      $message['body'][] = $output . '.';
+  }
+}

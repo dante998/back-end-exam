@@ -1,0 +1,3 @@
+administer registration roles:
+  title: 'Administer registration roles'
+  description: 'Set roles assigned on registration and manage whether they apply to administrator-created users.'

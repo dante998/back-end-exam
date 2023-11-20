@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_bio
     - field.storage.node.field_contact_information
     - node.type.instructor
+    - user.role.administrator
   module:
     - node
     - telephone
@@ -246,9 +247,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
       cache:
         type: tag
         options: {  }
@@ -357,7 +359,7 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_bio'
         - 'config:field.storage.node.field_contact_information'
@@ -377,7 +379,7 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_bio'
         - 'config:field.storage.node.field_contact_information'

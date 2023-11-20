@@ -1,0 +1,11 @@
+uuid: 9631626c-8b0c-4fc1-bee8-957d5b20cf02
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.gender
+id: taxonomy_term.gender
+target_entity_type_id: taxonomy_term
+target_bundle: gender
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,6 @@
+registration_role.setting.form:
+  title: 'Registration Role'
+  parent: user.admin_index
+  description: 'Auto-assign a role upon registration'
+  weight: -10
+  route_name: registration_role.setting.form

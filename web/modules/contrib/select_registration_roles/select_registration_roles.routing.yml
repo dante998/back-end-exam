@@ -1,0 +1,7 @@
+select_registration_roles.roles_set_by_admin:
+  path: '/admin/people/select-registration-roles-setby-admin'
+  defaults:
+    _form: '\Drupal\select_registration_roles\Form\SelectRegistrationConfigForm'
+    _title: 'Registration Role Set By Admin'
+  requirements:
+    _permission: 'administer site configuration'

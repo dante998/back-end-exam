@@ -1,0 +1,23 @@
+uuid: fa2bf4b7-92a5-4870-9add-4d3281332a3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_category
+  module:
+    - text
+id: taxonomy_term.course_category.default
+targetEntityType: taxonomy_term
+bundle: course_category
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

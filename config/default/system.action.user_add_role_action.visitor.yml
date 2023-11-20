@@ -1,0 +1,14 @@
+uuid: 57ee1350-3a05-4aac-89c0-79eebfa0f33e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.visitor
+  module:
+    - user
+id: user_add_role_action.visitor
+label: 'Add the Visitor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: visitor

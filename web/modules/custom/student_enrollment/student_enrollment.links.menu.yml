@@ -1,0 +1,7 @@
+student_enrollment.report_link:
+  title: Student report
+  description: View students.
+  route_name: student_enrollment.report
+  parent: system.admin_reports
+  weight: -5
+

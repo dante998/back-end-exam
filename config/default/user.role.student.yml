@@ -1,0 +1,14 @@
+uuid: d8e7eb27-4b2d-4e3c-a3ad-011b1da01067
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+id: student
+label: Student
+weight: 4
+is_admin: null
+permissions:
+  - 'access comments'
+  - 'edit own comments'
+  - 'post comments'

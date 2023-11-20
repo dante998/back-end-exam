@@ -4,6 +4,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_contact_information
+    - field.field.user.user.field_course_select
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_full_name
+    - field.field.user.user.field_gender
+    - field.field.user.user.field_last_name
+    - field.field.user.user.field_student
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -28,6 +35,13 @@ content:
     weight: 0
     region: content
 hidden:
+  field_contact_information: true
+  field_course_select: true
+  field_first_name: true
+  field_full_name: true
+  field_gender: true
+  field_last_name: true
+  field_student: true
   langcode: true
   member_for: true
   search_api_excerpt: true

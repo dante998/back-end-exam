@@ -1,0 +1,13 @@
+name: Select Registration Roles
+core_version_requirement: ^8.8 || ^9.0 || ^10
+description: Allow admin to set which roles will be available to users on registration form.
+package: User
+type: module
+dependencies:
+  - drupal:user
+configure: select_registration_roles.roles_set_by_admin
+
+# Information added by Drupal.org packaging script on 2023-01-05
+version: '2.0.0-beta2'
+project: 'select_registration_roles'
+datestamp: 1672923638

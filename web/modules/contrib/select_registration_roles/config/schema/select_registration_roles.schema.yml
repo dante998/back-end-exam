@@ -1,0 +1,23 @@
+select_registration_roles.settings:
+  type: config_object
+  label: 'Select registration roles settings'
+  mapping:
+    select_registration_roles_setby_admin:
+      type: sequence
+      label: 'Roles'
+      sequence:
+       - type: string
+    select_registration_roles_admin_approval:
+      type: sequence
+      label: 'Approval Roles'
+      sequence:
+       - type: string
+    select_registration_roles_auth_role:
+      type: boolean
+      label: 'Display the authenticated user role'
+    select_registration_roles_required:
+      type: boolean
+      label: 'Select role field required'
+    select_registration_roles_multiple:
+      type: boolean
+      label: 'Allow select multiple roles'

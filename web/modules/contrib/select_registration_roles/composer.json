@@ -1,0 +1,23 @@
+{
+  "name": "drupal/select_registration_roles",
+  "description": "Allow admin to set which roles will be available to users on registration form.",
+  "keywords": [],
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/select_registration_roles",
+  "names": [
+      "drupal/select_registration_roles"
+  ],
+  "licenses": [
+      {
+          "name": "GNU General Public License v2.0 or later",
+          "osi": "GPL-2.0-or-later",
+          "url": "https://spdx.org/licenses/GPL-2.0-or-later.html#licenseText"
+      }
+  ],
+  "support": {
+      "source": "https://git.drupalcode.org/project/select_registration_roles"
+  },
+  "requires": {
+      "drupal/core": "^8.8 || ^9.0"
+  }
+}

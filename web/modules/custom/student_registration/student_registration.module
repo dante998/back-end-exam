@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function student_registration_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id === 'user_register_form') {
+    $form['#attributes']['novalidate'] = 'novalidate';
+    // Add a custom validation function to the registration form.
+    $form['#validate'][] = 'registration_validation';
+
+    $form['account']['name']['#attributes']['placeholder'] = t('username');
+    $form['account']['mail']['#attributes']['placeholder'] = t('email address');
+  }
+}
+
+
+
+
+/**
+ * Custom validation function for the registration form.
+ */
+function registration_validation($form, &$form_state) {
+  // Add your custom validation logic here.
+  $username = $form_state->getValue('name');
+
+
+  if (strlen($username) < 5 ) {
+    $form_state->setErrorByName('name', t('Username must be at least 5 characters long.'));
+  }
+}

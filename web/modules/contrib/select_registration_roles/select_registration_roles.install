@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * The installation instructions for Select Registration Roles.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function select_registration_roles_install() {
+  module_set_weight('select_registration_roles', -5);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function select_registration_roles_uninstall() {
+  $config = \Drupal::configFactory();
+  $select_registration_roles_config = $config->getEditable('select_registration_roles.settings');
+  // Cleaning garbage.
+  $select_registration_roles_config->delete()->save();
+}

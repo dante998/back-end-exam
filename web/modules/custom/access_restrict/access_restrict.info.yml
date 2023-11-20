@@ -1,0 +1,5 @@
+name: Node access restrict
+type: module
+description: Restricting students access on nodes based on their selected course.
+package: Custom
+core_version_requirement: ^9 || ^10

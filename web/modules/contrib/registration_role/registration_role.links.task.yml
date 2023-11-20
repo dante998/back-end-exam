@@ -1,0 +1,5 @@
+registration_role.setting.form:
+  title: 'Registration Role'
+  description: 'Auto-assign a role upon registration'
+  route_name: registration_role.setting.form
+  base_route: entity.user.collection

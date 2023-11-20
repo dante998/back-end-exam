@@ -1,0 +1,13 @@
+registration_role.setting:
+  type: config_object
+  label: 'Registration role settings'
+  mapping:
+    role_to_select:
+      type: sequence
+      label: 'User roles'
+      sequence:
+        type: string
+        label: 'Role'
+    registration_mode:
+      type: string
+      label: 'Registration mode'

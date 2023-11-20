@@ -1,0 +1,3 @@
+select_registration_roles_auth_role: false
+select_registration_roles_required: false
+select_registration_roles_multiple: false

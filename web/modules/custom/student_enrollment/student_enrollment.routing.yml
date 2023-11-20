@@ -1,0 +1,7 @@
+student_enrollment.report:
+  path: /admin/reports/students
+  defaults:
+    _controller: \Drupal\student_enrollment\Controller\EnrollmentsController::report
+    _title: Students enrollment
+  requirements:
+    _permission: access student report

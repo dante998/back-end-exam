@@ -1,0 +1,5 @@
+student_enrollment.action_link:
+  route_name: view.people_students.page_1
+  title: "Manage students"
+  appears_on:
+   - "student_enrollment.report"

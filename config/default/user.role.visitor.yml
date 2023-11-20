@@ -1,0 +1,9 @@
+uuid: 85c78e61-8825-491a-aa42-dd41b45bbe09
+langcode: en
+status: true
+dependencies: {  }
+id: visitor
+label: Visitor
+weight: 5
+is_admin: false
+permissions: {  }

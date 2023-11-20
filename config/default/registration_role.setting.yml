@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: o1wWkhSOJotsHFgvzESaUOiTWhLak62cKBDyEtewAIM
+role_to_select:
+  student: student
+registration_mode: user

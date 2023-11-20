@@ -1,0 +1,14 @@
+{
+  "name": "drupal/profile",
+  "type": "drupal-module",
+  "description": "Provides configurable user profiles.",
+  "homepage": "https://drupal.org/project/profile",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^9 || ^10",
+    "drupal/entity": "^1.0"
+  },
+  "require-dev": {
+    "drupal/token": "^1.7"
+  }
+}

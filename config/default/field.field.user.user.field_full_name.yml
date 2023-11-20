@@ -1,0 +1,20 @@
+uuid: 51a3daf1-d1eb-46c9-9683-68e9403bc3d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_full_name
+  module:
+    - user
+id: user.user.field_full_name
+field_name: field_full_name
+entity_type: user
+bundle: user
+label: 'Student full name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,5 @@
+name: Student registration
+type: module
+description: Add validation and error handling to my form.
+package: Custom
+core_version_requirement: ^9 || ^10

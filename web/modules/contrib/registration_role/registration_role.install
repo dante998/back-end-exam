@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the registration role module.
+ */
+
+
+/**
+ * Assign 'administer registration roles' to roles having 'administer users'
+ */
+function registration_role_update_8007(&$sandbox) {
+  $roles = user_roles(FALSE, 'administer users');
+  foreach ($roles as $role) {
+    $roleId = $role->id();
+    user_role_grant_permissions($roleId,['administer registration roles']);
+  }
+}
+
+/**
+ * Remove the no selected roles from the configuration.
+ */
+function registration_role_update_8008(&$sandbox) {
+  $config = \Drupal::configFactory()->getEditable('registration_role.setting');
+  $role_to_select = $config->get('role_to_select');
+  // Remove all the unselect roles from the configuration, so the configuration
+  // and the schema match.
+  // more info https://www.drupal.org/node/3155688
+  $config->set('role_to_select', array_filter($role_to_select));
+  $config->save();
+}

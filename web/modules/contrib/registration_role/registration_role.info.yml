@@ -1,0 +1,11 @@
+name: Registration Role
+type: module
+description: 'Automatically assign a role to all new users who register.'
+package: Registration
+core_version_requirement: ^8 || ^9 || ^10
+configure: registration_role.setting.form
+
+# Information added by Drupal.org packaging script on 2023-07-11
+version: '2.0.0'
+project: 'registration_role'
+datestamp: 1689039868

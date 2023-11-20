@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * How to view students enrolled course only?
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\user\Entity\User;
+use Drupal\Core\Access\AccessResult;
+
+
+
+  /**
+  * Implements hook_ENTITY_TYPE_access().
+  */
+  function access_restrict_node_access(NodeInterface $node, $op, AccountInterface $account) {
+    // Check if the operation is "view" and the node type is "course".
+    if ($node->getType() == 'course' && $op == 'view') {
+      // Get the roles of the current user.
+      $roles = $account->getRoles();
+     // Check if the user has the "student" role.
+      if (in_array('student', $roles)) {
+        // Check if the user is referenced in the field_enrolled_students.
+        $user = User::load($account->id());
+        $enrolled_students = $user->field_course_select->referencedEntities();
+
+        foreach ($enrolled_students as $course) {
+          if ($course->id() == $node->id()) {
+            // The user is enrolled in this course, allow access.
+            return AccessResult::allowed();
+          }
+        }
+
+        // The user is not enrolled in this course, deny access.
+        return AccessResult::forbidden();
+      }
+    }
+
+    // Return a neutral opinion otherwise.
+    return AccessResult::neutral();
+  }

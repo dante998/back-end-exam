@@ -25,8 +25,12 @@
         "drupal/entity_browser": "^2.9",
         "drupal/entity_usage": "^2.0@beta",
         "drupal/inline_entity_form": "^2.0@RC",
+        "drupal/menu_per_role": "^1.5",
         "drupal/paragraphs": "^1.16",
+        "drupal/profile": "^1.7",
+        "drupal/registration_role": "^2.0",
         "drupal/search_api_db": "^1.30",
+        "drupal/select_registration_roles": "^2.0@beta",
         "drupal/views_bulk_operations": "^4.2",
         "drush/drush": "^11.6"
     },

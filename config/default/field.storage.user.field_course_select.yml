@@ -1,0 +1,20 @@
+uuid: 86c66b04-77e5-49eb-8ea3-89335b27b215
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: user.field_course_select
+field_name: field_course_select
+entity_type: user
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

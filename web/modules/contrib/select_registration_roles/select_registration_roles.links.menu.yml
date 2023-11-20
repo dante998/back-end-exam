@@ -1,0 +1,4 @@
+select_registration_roles.roles_set_by_admin:
+  title: Registration Role Set By Admin
+  route_name: select_registration_roles.roles_set_by_admin
+  parent: entity.user.collection

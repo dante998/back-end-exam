@@ -1,9 +1,9 @@
-uuid: a253de77-75fc-4653-bdc5-e70275ea01ba
+uuid: f45d8f49-267f-47ea-b84e-5077f0390f6a
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.course
+    - node.type.instructor
   module:
     - node
     - user
@@ -25,6 +25,22 @@ display:
     display_options:
       title: Content
       fields:
+        node_bulk_form:
+          id: node_bulk_form
+          table: node
+          field: node_bulk_form
+          entity_type: node
+          plugin_id: node_bulk_form
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+          element_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
         title:
           id: title
           table: node_field_data
@@ -322,7 +338,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            course: course
+            instructor: instructor
           group: 1
           exposed: false
           expose:
@@ -340,7 +356,6 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
-              content_editor: '0'
               administrator: '0'
             reduce: false
           is_grouped: false
@@ -570,7 +585,7 @@ display:
       show_admin_links: false
       display_extenders: {  }
     cache_metadata:
-      max-age: -1
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -604,7 +619,7 @@ display:
         weight: -10
         menu_name: admin
     cache_metadata:
-      max-age: -1
+      max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

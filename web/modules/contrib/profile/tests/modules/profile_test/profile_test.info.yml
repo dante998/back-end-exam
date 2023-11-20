@@ -1,0 +1,11 @@
+name: Profile Test
+type: module
+description: 'Test module for Profile.'
+package: Testing
+dependencies:
+  - profile:profile
+
+# Information added by Drupal.org packaging script on 2022-10-07
+version: '8.x-1.7'
+project: 'profile'
+datestamp: 1665131794

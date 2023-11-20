@@ -1,0 +1,19 @@
+uuid: 02e9a301-9580-4320-bc19-7e13534c80ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_student
+field_name: field_student
+entity_type: user
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
