@@ -25,8 +25,8 @@ use Drupal\Core\Access\AccessResult;
         $user = User::load($account->id());
         $enrolled_students = $user->field_course_select->referencedEntities();
 
-        foreach ($enrolled_students as $course) {
-          if ($course->id() == $node->id()) {
+        foreach ($enrolled_students as $enrolled) {
+          if ($enrolled->id() == $node->id()) {
             // The user is enrolled in this course, allow access.
             return AccessResult::allowed();
           }
