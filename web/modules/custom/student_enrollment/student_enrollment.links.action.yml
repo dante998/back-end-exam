@@ -3,3 +3,15 @@ student_enrollment.action_link:
   title: "Manage students"
   appears_on:
    - "student_enrollment.report"
+   - "most_enrolled_users.report"
+   - "recent_courses.report"
+   - "most_enrolled_courses.report"
+
+manage_courses.action_link:
+  route_name: view.course_overview.page_1
+  title: "Manage courses"
+  appears_on:
+   - "student_enrollment.report"
+   - "most_enrolled_users.report"
+   - "recent_courses.report"
+   - "most_enrolled_courses.report"

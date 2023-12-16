@@ -3,16 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.course.body
     - field.field.node.course.field_category
+    - field.field.node.course.field_description
     - field.field.node.course.field_end_date
+    - field.field.node.course.field_image
     - field.field.node.course.field_instructor
     - field.field.node.course.field_referenced_resources
     - field.field.node.course.field_start_date
+    - image.style.thumbnail
     - node.type.course
   module:
     - content_moderation
     - datetime
+    - image
     - paragraphs
     - path
     - text
@@ -21,16 +24,6 @@ targetEntityType: node
 bundle: course
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 1
-    region: content
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-      show_summary: false
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 9
@@ -43,21 +36,37 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_end_date:
     type: datetime_default
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_image:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
   field_instructor:
     type: options_select
-    weight: 26
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   field_referenced_resources:
     type: paragraphs
-    weight: 5
+    weight: 3
     region: content
     settings:
       title: Paragraph
@@ -75,7 +84,7 @@ content:
     third_party_settings: {  }
   field_start_date:
     type: datetime_default
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }

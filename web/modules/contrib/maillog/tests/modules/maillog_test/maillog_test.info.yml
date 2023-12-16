@@ -1,0 +1,11 @@
+name: 'Maillog test'
+description: 'Contains helper logic for the Maillog tests.'
+package: 'Mail'
+type: module
+core_version_requirement: ^9 || ^10
+hidden: TRUE
+
+# Information added by Drupal.org packaging script on 2023-06-01
+version: '8.x-1.1'
+project: 'maillog'
+datestamp: 1685616901

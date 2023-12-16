@@ -1,7 +1,32 @@
 student_enrollment.report:
-  path: /admin/reports/students
+  path: /students-enrollment
   defaults:
     _controller: \Drupal\student_enrollment\Controller\EnrollmentsController::report
     _title: Students enrollment
   requirements:
     _permission: access student report
+
+recent_courses.report:
+  path: /most-recent-courses
+  defaults:
+    _controller: \Drupal\student_enrollment\Controller\EnrollmentsController::reportRecentCourses
+    _title: The most recent courses
+  requirements:
+    _permission: access students report
+
+most_enrolled_courses.report:
+  path: /most-enrolled-courses
+  defaults:
+    _controller: \Drupal\student_enrollment\Controller\EnrollmentsController::reportMostEnrolled
+    _title: The most enrolled courses
+  requirements:
+    _permission: access students report
+
+most_enrolled_users.report:
+  path: /most-enrolled-users
+  defaults:
+    _controller: \Drupal\student_enrollment\Controller\EnrollmentsController::reportUsersByEnrollment
+    _title: Students with most enrolled courses
+  requirements:
+    _permission: access students report
+

@@ -1,42 +1,45 @@
 <?php
 
-/**
- * How to view students enrolled course only?
- */
-
 use Drupal\node\NodeInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\user\Entity\User;
 use Drupal\Core\Access\AccessResult;
 
+// Define constants for node type and role name.
+define('COURSE_NODE_TYPE', 'course');
+define('STUDENT_ROLE', 'student');
 
-
-  /**
-  * Implements hook_ENTITY_TYPE_access().
-  */
-  function access_restrict_node_access(NodeInterface $node, $op, AccountInterface $account) {
-    // Check if the operation is "view" and the node type is "course".
-    if ($node->getType() == 'course' && $op == 'view') {
-      // Get the roles of the current user.
-      $roles = $account->getRoles();
-     // Check if the user has the "student" role.
-      if (in_array('student', $roles)) {
-        // Check if the user is referenced in the field_enrolled_students.
-        $user = User::load($account->id());
-        $enrolled_students = $user->field_course_select->referencedEntities();
-
-        foreach ($enrolled_students as $enrolled) {
-          if ($enrolled->id() == $node->id()) {
-            // The user is enrolled in this course, allow access.
-            return AccessResult::allowed();
-          }
-        }
-
-        // The user is not enrolled in this course, deny access.
-        return AccessResult::forbidden();
-      }
-    }
-
-    // Return a neutral opinion otherwise.
+/**
+ * This function provides access control for viewing course nodes based on the enrollment status of the current student.
+ *
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function access_restrict_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  // Check if the operation is "view" and the node type is "course".
+  if ($node->getType() !== COURSE_NODE_TYPE || $op !== 'view') {
+    // Not a course node or not a view operation, grant neutral access.
     return AccessResult::neutral();
   }
+
+  $roles = $account->getRoles();
+
+  // Check if the user has the "student" role.
+  if (!in_array(STUDENT_ROLE, $roles)) {
+    // The user does not have the "student" role, grant neutral access.
+    return AccessResult::neutral();
+  }
+
+  // Check if the user is referenced in the field_enrolled_students.
+  $user = User::load($account->id());
+  $enrolled_students = $user->field_course_select->referencedEntities();
+
+  foreach ($enrolled_students as $enrolled) {
+    if ($enrolled->id() == $node->id()) {
+      // The user is enrolled in this course, allow access.
+      return AccessResult::allowed();
+    }
+  }
+
+  // The user is not enrolled in this course, deny access.
+  return AccessResult::forbidden();
+}

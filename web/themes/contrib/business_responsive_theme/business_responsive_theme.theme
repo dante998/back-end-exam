@@ -1,0 +1,336 @@
+<?php
+
+/**
+ * @file
+ * Contains theme override functions and preprocess functions
+ */
+
+use Drupal\Core\Template\RenderWrapper;
+use Drupal\Core\Template\Attribute;
+use Drupal\search\Form\SearchBlockForm;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\system\Form\ThemeSettingsForm;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Drupal\file\FileInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\UrlHelper;
+
+/**
+ * Implements hook_preprocess_page() for block templates.
+ */
+
+function business_responsive_theme_preprocess_page(&$variables) {
+
+  // Add Responsive class for Top Widget.
+  if (!empty($variables['page']['topwidget_first']) && !empty($variables['page']['topwidget_second']) && !empty($variables['page']['topwidget_third'])) {
+    $variables['topwidget_class'] = 'col-md-4';
+    $variables['topwidget_third_class'] = 'col-md-4';
+  }
+  elseif((!empty($variables['page']['topwidget_first']) && !empty($variables['page']['topwidget_second'])) or (!empty($variables['page']['topwidget_first']) && !empty($variables['page']['topwidget_third'])) or (!empty($variables['page']['topwidget_third']) && !empty($variables['page']['topwidget_second']))) {
+    $variables['topwidget_class'] = 'col-md-6';
+    $variables['topwidget_third_class'] = 'col-md-6';
+  }
+  else {
+    $variables['topwidget_class'] = 'col-md-12';
+  }
+
+  // Add Responsive class for Middle Widget.
+  if (!empty($variables['page']['middle_first']) && !empty($variables['page']['middle_second']) && !empty($variables['page']['middle_third'])) {
+    $variables['middle_class'] = 'col-md-4';
+    $variables['middle_third_class'] = 'col-md-4';
+  }
+  elseif((!empty($variables['page']['middle_first']) && !empty($variables['page']['middle_second'])) or (!empty($variables['page']['middle_first']) && !empty($variables['page']['middle_third'])) or (!empty($variables['page']['middle_third']) && !empty($variables['page']['middle_second']))) {
+    $variables['middle_class'] = 'col-md-6';
+    $variables['middle_third_class'] = 'col-md-6';
+  }
+  else {
+    $variables['middle_class'] = 'col-md-12';
+  }
+
+  // Add Responsive class for Bottom Widget.
+  if (!empty($variables['page']['bottom_first']) && !empty($variables['page']['bottom_second']) && !empty($variables['page']['bottom_third']) && !empty($variables['page']['bottom_forth'])) {
+    $variables['bottom_class'] = 'col-md-3';
+  }
+  else if (!empty($variables['page']['bottom_first']) && !empty($variables['page']['bottom_second']) && !empty($variables['page']['bottom_third'])) {
+    $variables['bottom_class'] = 'col-md-4';
+  }
+  else if((!empty($variables['page']['bottom_first']) && !empty($variables['page']['bottom_second'])) or (!empty($variables['page']['bottom_first']) && !empty($variables['page']['bottom_third'])) or (!empty($variables['page']['bottom_third']) && !empty($variables['page']['bottom_second']))) {
+    $variables['bottom_class'] = 'col-md-6';
+  }
+  else {
+    $variables['bottom_class'] = 'col-md-12';
+  }
+
+  // Add responsive class for price widget.
+  if (!empty($variables['page']['pricetable_first']) && !empty($variables['page']['pricetable_second']) && !empty($variables['page']['pricetable_third']) && !empty($variables['page']['pricetable_forth'])) {
+    $variables['pricetable_class'] = 'col-sm-3';
+  }
+  else if (!empty($variables['page']['pricetable_first']) && !empty($variables['page']['pricetable_second']) && !empty($variables['page']['pricetable_third'])) {
+    $variables['pricetable_class'] = 'col-sm-4';
+  }
+  else if((!empty($variables['page']['pricetable_first']) && !empty($variables['page']['pricetable_second'])) or (!empty($variables['page']['pricetable_first']) && !empty($variables['page']['pricetable_third'])) or (!empty($variables['page']['pricetable_third']) && !empty($variables['page']['pricetable_second']))) {
+    $variables['pricetable_class'] = 'col-sm-6';
+  }
+  else {
+    $variables['pricetable_class'] = 'col-md-12';
+  }
+
+  // Add Responsive class for footer.
+  if (!empty($variables['page']['footer_first']) && !empty($variables['page']['footer_second']) && !empty($variables['page']['footer_third'])) {
+    $variables['footer_class'] = 'col-md-4';
+  }
+  elseif((!empty($variables['page']['footer_first']) && !empty($variables['page']['footer_second'])) or (!empty($variables['page']['footer_first']) && !empty($variables['page']['footer_third'])) or (!empty($variables['page']['footer_third']) && !empty($variables['page']['footer_second']))) {
+    $variables['footer_class'] = 'col-md-6';
+    $variables['footer_third_class'] = 'col-md-6';
+  }
+  else {
+    $variables['footer_class'] = 'col-md-12';
+  }
+
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['contentlayout'] = 'col-md-6';
+    $variables['sidebarfirst'] = 'col-md-3';
+    $variables['sidebarsecond'] = 'col-md-3';
+  }
+  elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['contentlayout'] = 'col-md-9 ';
+    $variables['sidebarfirst'] = 'col-md-3';
+  }
+  elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['contentlayout'] = 'col-md-9';
+    $variables['sidebarsecond'] = 'col-md-3';
+  }
+  else {
+    $variables['contentlayout'] = 'col-md-12';
+  }
+
+  // Social media global variable.
+  $variables['show_social_icon'] = theme_get_setting('show_social_icon');
+  $variables['facebook_url'] = theme_get_setting('facebook_url');
+  $variables['twitter_url'] = theme_get_setting('twitter_url');
+  $variables['linkedin_url'] = theme_get_setting('linkedin_url');
+  $variables['pinterest_url'] = theme_get_setting('pinterest_url');
+  $variables['rss_url'] = theme_get_setting('rss_url');
+  $variables['copyright_text'] = theme_get_setting('copyright_text');  
+  $variables['show_credit_link'] = theme_get_setting('show_credit_link');
+
+  //To get the current URL
+  $current_url  = \Drupal::request()->getRequestUri();
+  $current_path = explode("/", $current_url);
+  if (!empty($current_path)) {
+    $path = end($current_path);
+  }
+  else {
+    $path = '';
+  }
+  $variables['current_path'] = $path;
+  
+  // Slider
+  // Assign Variable for slider
+  if ($variables['is_front']) {
+    if (theme_get_setting('show_slideshow','business_responsive_theme') == 1) {
+      $variables['show_slideshow'] = 1;
+      $variables['slider_content'] = business_responsive_theme_get_slider_content();
+    }
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function business_responsive_theme_preprocess_menu(&$variables, $hook) {
+  if ($hook == 'menu__main') { // We're doing that for main menu.
+    // Get the current path.
+    $current_path = \Drupal::request()->getRequestUri();
+    $items = $variables['items'];
+    foreach ($items as $key => $item) {
+      // If path is current_path, set active to li.
+      if ($item['url']->toString() == $current_path) {
+      // Add active link.
+      $variables['items'][$key]['attributes']['class'] = 'active';
+      }
+    }
+  }
+}
+
+/**
+ * Slider
+ * Implements custom function for get slider content.
+ */
+function business_responsive_theme_get_slider_content() {
+  $slider_content = array();
+  for ($i = 1; $i <= theme_get_setting('no_of_slides'); $i++) {
+    $fid = theme_get_setting('slide_image_path'.$i,'business_responsive_theme');
+    if (!empty($fid)) {
+      $file = $node->toUrl()->toString();
+      $uri = $file->getFileUri();
+      $path = $file->createFileUrl($uri);
+    }
+    else {
+      $path = base_path() . \Drupal::service('extension.path.resolver')->getPath('theme', 'business_responsive_theme') . theme_get_setting('slide_image_path_' . $i, 'business_responsive_theme');
+    }
+
+    $sliderTitle = Html::escape(theme_get_setting('slide_title_' . $i, 'business_responsive_theme'));
+    $sliderDesc = Html::escape(theme_get_setting('slide_description_' . $i, 'business_responsive_theme'));
+    $sliderURL = UrlHelper::filterBadProtocol(theme_get_setting('slide_url_' . $i, 'business_responsive_theme'));
+
+    $slider_content[$i] = '<li>
+      <img src="' . $path . '" alt="Slider Banner" />
+      <div class="slider-caption">
+        <h2 class="slider-title">' . $sliderTitle .'</h2>
+        <div class="clearfix"><p class="slider-description">' . $sliderDesc .'</p></div>
+        <a href="' . $sliderURL . '" class="more-link">Read more</a>
+      </div>
+    </li>';
+  }
+  return $slider_content;
+}
+
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function business_responsive_theme_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  
+  //Social Icon Link
+  $form['business_responsive_theme_settings']['social_icon'] = [
+    '#type' => 'details',
+    '#title' => t('Social Media Link'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  ];
+  $form['business_responsive_theme_settings']['social_icon']['show_social_icon'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Show Social Icons'),
+    '#default_value' => theme_get_setting('show_social_icon'),
+    '#description'   => t("Show/Hide social media links"),
+  ];
+  $form['business_responsive_theme_settings']['social_icon']['facebook_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Facebook Link'),
+    '#default_value' => theme_get_setting('facebook_url'),
+  ];
+  $form['business_responsive_theme_settings']['social_icon']['twitter_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Twitter Link'),
+    '#default_value' => theme_get_setting('twitter_url'),
+  ];
+  $form['business_responsive_theme_settings']['social_icon']['linkedin_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Linkedin Link'),
+    '#default_value' => theme_get_setting('linkedin_url'),
+  ];
+  $form['business_responsive_theme_settings']['social_icon']['pinterest_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Pinterest Link'),
+    '#default_value' => theme_get_setting('pinterest_url'),
+  ];
+  $form['business_responsive_theme_settings']['social_icon']['rss_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('RSS Link'),
+    '#default_value' => theme_get_setting('rss_url'),
+  ];
+
+  // Custom submit to save the file permanent.
+  $form['#submit'][] = 'business_responsive_theme_settings_form_submit';
+
+  //Copyright
+  $form['business_responsive_theme_settings']['copyright'] = [
+    '#type' => 'details',
+    '#title' => t('Copyright'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  ];
+  $form['business_responsive_theme_settings']['copyright']['copyright_text'] = [
+    '#type' => 'textfield',
+    '#title' => t('Enter copyright text'),
+    '#default_value' => theme_get_setting('copyright_text'),
+  ];
+
+  //Show/Hide credit
+  $form['business_responsive_theme_settings']['credit_link'] = [
+    '#type' => 'details',
+    '#title' => t('Credit'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  ];
+  $form['business_responsive_theme_settings']['credit_link']['show_credit_link'] = [
+    '#type' => 'checkbox',
+    '#title' => t("Show/hide credit text"),
+    '#default_value' => theme_get_setting('show_credit_link'),
+    '#description'   => t("Recommend you to display credit in footer"),
+  ];
+
+
+  //Slide show configure 
+  $form['business_responsive_theme_settings']['slideshow'] = [
+    '#type' => 'details',
+    '#title' => t('Front page slideshow'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  ];
+  $form['business_responsive_theme_settings']['slideshow']['no_of_slides'] = [
+    '#type' => 'textfield',
+    '#title' => t('Number of slides'),
+    '#default_value' => theme_get_setting('no_of_slides'),
+    '#description'  => t("Enter the number of slides required & Save configuration"),
+    '#markup' => '<div class="messages messages--warning">Clear caches after making any changes in theme settings. <a href="../../config/development/performance">Click here to clear cache</a></div>',
+  ];
+  $form['business_responsive_theme_settings']['slideshow']['show_slideshow'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Show Slideshow'),
+    '#default_value' => theme_get_setting('show_slideshow'),
+    '#description'   => t("Show/Hide Slideshow in home page"),
+  ];
+  $form['business_responsive_theme_settings']['slideshow']['slide'] = [
+    '#markup' => t('Change the banner image, title, description and link using below fieldset'),
+  ];
+  
+  for ($i = 1; $i <= theme_get_setting('no_of_slides'); $i++) {
+    $form['business_responsive_theme_settings']['slideshow']['slide' . $i] = [
+      '#type' => 'details',
+      '#title' => t('Slide '.$i),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    ];
+    $form['business_responsive_theme_settings']['slideshow']['slide' . $i]['slide_image_path' . $i] = [
+      '#type' => 'managed_file',
+      '#title' => t('Slide '.$i.' Image'),
+      '#default_value' => theme_get_setting('slide_image_path'.$i,'business_responsive_theme'),
+      '#upload_location' => 'public://',
+    ];
+    $form['business_responsive_theme_settings']['slideshow']['slide' . $i]['slide_title_' . $i] = [
+      '#type' => 'textfield',
+      '#title' => t('Slide '.$i.' Title'),
+      '#default_value' => theme_get_setting('slide_title_' . $i,'business_responsive_theme'),
+    ];
+    $form['business_responsive_theme_settings']['slideshow']['slide' . $i]['slide_description_' . $i] = [
+      '#type' => 'textarea',
+      '#title' => t('Slide '.$i.' Description'),
+      '#default_value' => theme_get_setting('slide_description_' . $i,'business_responsive_theme'),
+    ];    
+    $form['business_responsive_theme_settings']['slideshow']['slide' . $i]['slide_url_' . $i] = [
+      '#type' => 'textfield',
+      '#title' => t('Slide '.$i.' URL'),
+      '#default_value' => theme_get_setting('slide_url_' . $i,'business_responsive_theme'),
+    ];
+
+    // Make the uploaded images permanent.
+    $image = theme_get_setting('slide_image_path'.$i,'business_responsive_theme');
+    if(!empty($image)){
+      $file = File::load($image[0]);
+      $file->setPermanent();
+      $file->save();
+      $file_usage = \Drupal::service('file.usage');
+      $file_usage_check = $file_usage->listUsage($file);
+      if (empty($file_usage_check)) {
+        $file_usage->add($file, 'business_responsive_theme', 'theme', $image[0]);
+      }
+    }
+
+  }
+
+}

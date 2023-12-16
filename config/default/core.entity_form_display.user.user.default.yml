@@ -34,7 +34,7 @@ content:
       placeholder: 'phone number'
     third_party_settings: {  }
   field_course_select:
-    type: options_select
+    type: options_buttons
     weight: 7
     region: content
     settings: {  }

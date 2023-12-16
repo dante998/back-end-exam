@@ -1,0 +1,59 @@
+name: Business Responsive Theme
+type: theme
+description: 'Zymphonies Drupal 8 Responsive Theme. Developed & Designed by <a href=http://www.zymphonies.com>Zymphonies</a><br/>Contact us for Drupal Design & Development <a href=mailto:info@zymphonies.com>info@zymphonies.com</a>'
+package: core
+base theme: false
+core_version_requirement: ^8 || ^9 || ^10
+
+#Libraries
+libraries:
+  - business_responsive_theme/bootstrap
+  - business_responsive_theme/fontawesome
+  - business_responsive_theme/smartmenus
+  - business_responsive_theme/flexslider
+  - business_responsive_theme/global-components
+
+#Regions
+regions:
+  header: 'Header'
+  search: 'Search'
+  primary_menu: 'Primary menu'
+
+  topwidget_first: 'Top First widget'
+  topwidget_second: 'Top Second widget'
+  topwidget_third: 'Top Third widget' 
+
+  middle_first: 'Middle first widget'
+  middle_second: 'Middle second widget'
+  middle_third: 'Middle third widget'
+
+  highlighted: 'Highlighted' 
+  page_title: 'Page title'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  sidebar_first: 'Left sidebar'
+  sidebar_second: 'Right sidebar'
+
+  pricetable_first: 'Price table first widget'
+  pricetable_second: 'Price table second widget'
+  pricetable_third: 'Price table third widget'
+  pricetable_forth: 'Price table forth widget'
+
+  bottom_first: 'Bottom first widget'
+  bottom_second: 'Bottom second widget'
+  bottom_third: 'Bottom third widget'
+
+  footer_first: 'Footer first widget'
+  footer_second: 'Footer second widget'
+  footer_third: 'Footer third widget'
+
+  footer_menu: 'Footer menu'
+
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+
+  auto_hidden_block: 'Auto hidden blocks'
+# Information added by Drupal.org packaging script on 2023-12-05
+version: '3.0.3'
+project: 'business_responsive_theme'
+datestamp: 1701803445

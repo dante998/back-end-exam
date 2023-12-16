@@ -17,6 +17,8 @@
     "require": {
         "composer/installers": "^2.0",
         "drupal/admin_toolbar": "^3.4",
+        "drupal/bootstrap": "^3.29",
+        "drupal/business_responsive_theme": "^3.0",
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-project-message": "^10.1",
         "drupal/core-recommended": "^10.1",
@@ -25,6 +27,7 @@
         "drupal/entity_browser": "^2.9",
         "drupal/entity_usage": "^2.0@beta",
         "drupal/inline_entity_form": "^2.0@RC",
+        "drupal/maillog": "^1.1",
         "drupal/menu_per_role": "^1.5",
         "drupal/paragraphs": "^1.16",
         "drupal/profile": "^1.7",

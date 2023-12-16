@@ -1,0 +1,32 @@
+uuid: 3b61f3ed-d3af-4dc9-850b-bb5eeaba4f1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.course_listing
+  module:
+    - node
+    - views
+  theme:
+    - bootstrap
+id: bootstrap_views_block__course_listing_block_1
+theme: bootstrap
+region: sidebar_second
+weight: -7
+provider: null
+plugin: 'views_block:course_listing-block_1'
+settings:
+  id: 'views_block:course_listing-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      course: course

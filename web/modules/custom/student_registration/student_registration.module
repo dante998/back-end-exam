@@ -1,9 +1,11 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_form_alter().
  */
-function student_registration_form_alter(&$form, &$form_state, $form_id) {
+function student_registration_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form_id === 'user_register_form') {
     $form['#attributes']['novalidate'] = 'novalidate';
     // Add a custom validation function to the registration form.
@@ -20,7 +22,7 @@ function student_registration_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Custom validation function for the registration form.
  */
-function registration_validation($form, &$form_state) {
+function registration_validation($form, FormStateInterface $form_state) {
   // Add your custom validation logic here.
   $username = $form_state->getValue('name');
 

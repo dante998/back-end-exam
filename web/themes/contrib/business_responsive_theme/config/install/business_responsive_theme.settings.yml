@@ -1,0 +1,49 @@
+# Default settings are not located here. Theme settings in general are handled
+# strictly by this base theme via the @BootstrapSetting annotation discovery
+# process. This is to help sub-theme's inherit its settings properly and
+# determine when a setting should be saved to config as "overridden".
+#
+# @see \Drupal\bootstrap\Plugin\SettingBase
+# @see \Drupal\bootstrap\Plugin\SettingInterface
+# @see \Drupal\bootstrap\Plugin\SettingManager
+# @see \Drupal\bootstrap\Plugin\Form\SystemThemeSettings
+
+# Default features.
+features:
+   comment_user_picture: true
+   comment_user_verification: true
+   favicon: true
+   logo: true
+   name: true
+   node_user_picture: true
+   slogan: true
+facebook_url: 'https://www.facebook.com/zymphonies'
+twitter_url: 'https://twitter.com/zymphonies'
+google_plus_url: 'https://plus.google.com/+ZymphoniesTechnologies'
+linkedin_url: 'http://www.linkedin.com/company/zymphonies'
+pinterest_url: 'https://www.pinterest.com/zymphonies'
+rss_url: 'rss.xml'
+copyright_text: 'Copyright 2019. All rights reserved'
+
+show_social_icon: 1
+show_credit_link: 1
+show_slideshow: 1
+
+#Slider Default Values
+no_of_slides: 3
+
+#Slider Default Images & Description
+slide_title_1: 'Drupal 8 zymphonies theme'
+slide_description_1: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since.' 
+slide_url_1: '#'
+slide_image_path_1: '/images/slider/slide_01.jpg'
+
+slide_title_2: 'Best drupal design & development agency'
+slide_description_2: 'long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' 
+slide_url_2: '#'
+slide_image_path_2: '/images/slider/slide_02.jpg'
+
+slide_title_3: 'Marketing agency'
+slide_description_3: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since.' 
+slide_url_3: '#'
+slide_image_path_3: '/images/slider/slide_03.jpg'
