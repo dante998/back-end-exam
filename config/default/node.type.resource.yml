@@ -1,0 +1,18 @@
+uuid: 932f8c2b-6deb-4be0-9ed1-cb2f242fe80a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Resource
+type: resource
+description: 'Custom content type named "Resource" with fields for resource title, description, and file upload.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

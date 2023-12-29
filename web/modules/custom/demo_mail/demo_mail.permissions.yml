@@ -1,0 +1,5 @@
+administer demo mail:
+  title: 'Administer mail settings'
+  description: 'Access the mail administrative setting page.'
+  restrict access: true
+

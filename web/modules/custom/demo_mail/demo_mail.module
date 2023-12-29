@@ -50,6 +50,8 @@ use Drupal\Core\Entity\EntityInterface;
   * Implements hook_user_presave().
   */
   function demo_mail_user_presave(EntityInterface $entity) {
+    // Check if the user has the 'send email notifications' permission.
+    if (\Drupal::currentUser()->hasPermission('administer demo mail')) {
     // Check if the user has selected a course.
     $selected_courses = $entity->field_course_select->referencedEntities();
 
@@ -68,6 +70,7 @@ use Drupal\Core\Entity\EntityInterface;
        }
      }
    }
+  }
 
 /**
  * Process single course enrollment and send email.

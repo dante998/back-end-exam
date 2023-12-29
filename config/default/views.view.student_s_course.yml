@@ -21,7 +21,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Student`s course'
+      title: 'Your courses'
       fields:
         title:
           id: title

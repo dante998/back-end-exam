@@ -1,0 +1,27 @@
+uuid: 94bbddcd-a8e9-4e83-901c-12151fcbf294
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file_upload
+    - node.type.resource
+  module:
+    - file
+id: node.resource.field_file_upload
+field_name: field_file_upload
+entity_type: node
+bundle: resource
+label: 'File upload'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt docx doc pdf xls jpg png zip'
+  max_filesize: 512MB
+  description_field: true
+field_type: file

@@ -6,3 +6,10 @@ add_instructor.add_article_content:
  route_parameters:
   node_type: instructor
 
+edit_instructor.edit_article_content:
+ route_name: view.instructor_overview.page_1
+ title: "Manage instructors"
+ appears_on:
+   - "view.instructor_listing.page_1"
+ route_parameters:
+  node_type: instructor

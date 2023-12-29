@@ -5,3 +5,11 @@ add_course.add_article_content:
    - "view.course_overview.page_1"
  route_parameters:
   node_type: course
+
+edit_course.edit_article_content:
+ route_name: view.course_overview.page_1
+ title: "Manage courses"
+ appears_on:
+   - "view.course_listing.page_1"
+ route_parameters:
+  node_type: course

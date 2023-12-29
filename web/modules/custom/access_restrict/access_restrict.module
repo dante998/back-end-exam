@@ -5,41 +5,59 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\user\Entity\User;
 use Drupal\Core\Access\AccessResult;
 
-// Define constants for node type and role name.
+// Define constants for node types and role name.
 define('COURSE_NODE_TYPE', 'course');
+define('RESOURCE_NODE_TYPE', 'resource');
 define('STUDENT_ROLE', 'student');
 
 /**
- * This function provides access control for viewing course nodes based on the enrollment status of the current student.
- *
- * Implements hook_ENTITY_TYPE_access().
+ * Implements hook_ENTITY_TYPE_access() for both course and resource nodes.
  */
 function access_restrict_node_access(NodeInterface $node, $op, AccountInterface $account) {
-  // Check if the operation is "view" and the node type is "course".
-  if ($node->getType() !== COURSE_NODE_TYPE || $op !== 'view') {
-    // Not a course node or not a view operation, grant neutral access.
-    return AccessResult::neutral();
-  }
-
+  // Get the roles of the user.
   $roles = $account->getRoles();
-
-  // Check if the user has the "student" role.
-  if (!in_array(STUDENT_ROLE, $roles)) {
-    // The user does not have the "student" role, grant neutral access.
-    return AccessResult::neutral();
+  // Check if the user does not have the "student" role or the operation is not "view".
+  if (!in_array(STUDENT_ROLE, $roles) || $op !== 'view') {
+    // If the user is not a student or the operation is not "view," deny access.
+    return AccessResult::forbidden();
   }
 
-  // Check if the user is referenced in the field_enrolled_students.
-  $user = User::load($account->id());
-  $enrolled_students = $user->field_course_select->referencedEntities();
+  // Check if the node type is "course".
+  if ($node->getType() === COURSE_NODE_TYPE) {
+    // Load the user entity.
+    $user = User::load($account->id());
+    // Check if the user is referenced in the field_course_select.
+    $enrolled_users = $user->field_course_select->referencedEntities();
 
-  foreach ($enrolled_students as $enrolled) {
-    if ($enrolled->id() == $node->id()) {
-      // The user is enrolled in this course, allow access.
-      return AccessResult::allowed();
+    foreach ($enrolled_users as $student) {
+      // Check if the user is enrolled in this specific course.
+      if ($student->id() == $node->id()) {
+        // The user is enrolled in this course, allow access.
+        return AccessResult::allowed();
+      }
     }
   }
 
-  // The user is not enrolled in this course, deny access.
-  return AccessResult::forbidden();
+  // Check if the node type is "resource".
+  if ($node->getType() === RESOURCE_NODE_TYPE) {
+    // Load the user entity.
+    $user = User::load($account->id());
+    // Check if the user is enrolled in any courses.
+    $enrolled_courses = $user->field_course_select->referencedEntities();
+
+    foreach ($enrolled_courses as $course) {
+      // Check if the field_external_resources is available and not empty.
+      if ($course->hasField('field_external_resources') && !$course->field_external_resources->isEmpty()) {
+        $resources = $course->field_external_resources->referencedEntities();
+        foreach ($resources as $resource) {
+          if ($resource->id() == $node->id()) {
+          // The user is enrolled in a course that references this resource, allow access.
+          return AccessResult::allowed();
+          }
+        }
+      }
+    }
+  }
+ // If none of the conditions are met, deny access.
+ return AccessResult::forbidden();
 }

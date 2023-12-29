@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.course.field_category
     - field.field.node.course.field_description
     - field.field.node.course.field_end_date
+    - field.field.node.course.field_external_resources
     - field.field.node.course.field_image
     - field.field.node.course.field_instructor
     - field.field.node.course.field_referenced_resources
@@ -47,6 +48,12 @@ content:
   field_end_date:
     type: datetime_default
     weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_external_resources:
+    type: options_select
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }

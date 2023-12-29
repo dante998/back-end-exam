@@ -1,0 +1,32 @@
+uuid: 7c14ca83-bee0-4b4f-b8dc-51e53e60a825
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.resource_listing
+  module:
+    - node
+    - views
+  theme:
+    - bootstrap
+id: bootstrap_views_block__resource_listing_block_1
+theme: bootstrap
+region: sidebar_second
+weight: -6
+provider: null
+plugin: 'views_block:resource_listing-block_1'
+settings:
+  id: 'views_block:resource_listing-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      resource: resource

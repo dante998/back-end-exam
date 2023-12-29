@@ -1,0 +1,24 @@
+uuid: f6251482-617e-48eb-b197-efbde72e9114
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_resource_description
+    - filter.format.full_html_and_file_upload
+    - node.type.resource
+  module:
+    - text
+id: node.resource.field_resource_description
+field_name: field_resource_description
+entity_type: node
+bundle: resource
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html_and_file_upload
+field_type: text_long

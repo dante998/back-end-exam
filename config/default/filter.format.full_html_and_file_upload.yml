@@ -1,0 +1,32 @@
+uuid: b4441a91-0523-4107-9a45-0c98b37275fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - editor
+name: 'Full HTML and File Upload'
+format: full_html_and_file_upload
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: ''
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: 0
+    settings:
+      filter_url_length: 72
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 0
+    settings: {  }
