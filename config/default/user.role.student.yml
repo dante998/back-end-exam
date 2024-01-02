@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - comment
+    - paragraphs_type_permissions
 id: student
 label: Student
 weight: 4
@@ -12,3 +13,4 @@ permissions:
   - 'access comments'
   - 'edit own comments'
   - 'post comments'
+  - 'view paragraph content call_to_action'

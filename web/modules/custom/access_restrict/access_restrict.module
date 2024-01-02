@@ -6,6 +6,9 @@ use Drupal\user\Entity\User;
 use Drupal\Core\Access\AccessResult;
 
 // Define constants for node types and role name.
+define('ARTICLE_NODE_TYPE', 'article');
+define('BASIC_PAGE_NODE_TYPE', 'basic_page');
+define('PARAGRAPHED_ARTICLE_NODE_TYPE', 'paragraphed_article');
 define('COURSE_NODE_TYPE', 'course');
 define('RESOURCE_NODE_TYPE', 'resource');
 define('STUDENT_ROLE', 'student');
@@ -58,6 +61,26 @@ function access_restrict_node_access(NodeInterface $node, $op, AccountInterface 
       }
     }
   }
- // If none of the conditions are met, deny access.
- return AccessResult::forbidden();
+
+ // Check if the node type is "article".
+ if ($node->getType() == ARTICLE_NODE_TYPE && $op === 'view') {
+  // Allow access to articles for students.
+  return AccessResult::allowed();
 }
+
+// Check if the node type is "basic_page".
+if ($node->getType() === BASIC_PAGE_NODE_TYPE && $op === 'view') {
+  // Allow access to basic pages for students.
+  return AccessResult::allowed();
+}
+
+// Check if the node type is "paragraphed_article".
+if ($node->getType() === PARAGRAPHED_ARTICLE_NODE_TYPE && $op === 'view') {
+  // Allow access to paragraphed articles for students.
+  return AccessResult::allowed();
+}
+
+// If none of the conditions are met, deny access.
+return AccessResult::forbidden();
+}
+

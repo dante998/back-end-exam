@@ -1,5 +1,5 @@
 name: Demo Email Notification
 type: module
-description: Demo email notifications for administrators when student enrolls into a course.
+description: Demo email notifications.
 core_version_requirement: ^9 || ^10
 package: Custom

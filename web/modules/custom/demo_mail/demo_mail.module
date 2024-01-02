@@ -50,8 +50,6 @@ use Drupal\Core\Entity\EntityInterface;
   * Implements hook_user_presave().
   */
   function demo_mail_user_presave(EntityInterface $entity) {
-    // Check if the user has the 'send email notifications' permission.
-    if (\Drupal::currentUser()->hasPermission('administer demo mail')) {
     // Check if the user has selected a course.
     $selected_courses = $entity->field_course_select->referencedEntities();
 
@@ -70,7 +68,6 @@ use Drupal\Core\Entity\EntityInterface;
        }
      }
    }
-  }
 
 /**
  * Process single course enrollment and send email.
@@ -82,12 +79,11 @@ use Drupal\Core\Entity\EntityInterface;
   $mailManager = \Drupal::service('plugin.manager.mail');
   // Get the current timestamp for enrollment date.
   $enrollment_date = Drupal::time()->getRequestTime();
-
   // Set module and key for the email.
   $module = 'demo_mail';
   $key = 'course_enrollment_single';
   // Get the recipient email address.
-  $to = \Drupal::config('system.site')->get('mail');
+  $to = \Drupal::config('system.site')->get('mail'); // TODO: Get emails from the CustomEmailsConfigForm
   // Prepare parameters for the email template
   $params['student_name'] = $entity->label();
   $params['course_name'] = $course_name;

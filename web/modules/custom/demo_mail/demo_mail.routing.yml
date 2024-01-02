@@ -1,0 +1,7 @@
+demo_mail.admin_emails:
+  path: '/admin/config/admin-emails'
+  defaults:
+    _form: '\Drupal\demo_mail\Form\CustomEmailsConfigForm'
+    _title: 'Admin Emails Configuration'
+  requirements:
+    _permission: 'administer demo mail'

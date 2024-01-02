@@ -7,9 +7,11 @@ dependencies:
   module:
     - comment
     - contact
+    - demo_mail
     - file
     - filter
     - media
+    - paragraphs_type_permissions
     - search
     - shortcut
     - system
@@ -24,9 +26,19 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'administer demo mail'
   - 'delete own files'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
   - 'view media'
+  - 'view paragraph content call_to_action'
+  - 'view paragraph content from_library'
+  - 'view paragraph content image_text'
+  - 'view paragraph content images'
+  - 'view paragraph content media'
+  - 'view paragraph content nested_paragraph'
+  - 'view paragraph content text'
+  - 'view paragraph content text_image'
+  - 'view paragraph content user'
