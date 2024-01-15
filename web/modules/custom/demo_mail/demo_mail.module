@@ -11,8 +11,8 @@ use Drupal\Core\Entity\EntityInterface;
     'langcode' => $message['langcode'],
   );
 
-   /** @var \Drupal\Core\Render\RendererInterface $renderer */
-   $renderer = \Drupal::service('renderer');
+  /** @var \Drupal\Core\Render\RendererInterface $renderer */
+  $renderer = \Drupal::service('renderer');
   switch ($key) {
     // Handle single course enrollment email.
     case 'course_enrollment_single':
@@ -28,6 +28,7 @@ use Drupal\Core\Entity\EntityInterface;
       // Render the email template and add it to the message body.
       $message['body'][] = $renderer->render($element);
       break;
+
 
       // Handle multiple course enrollments email.
       case 'course_enrollment_multiple':
@@ -82,31 +83,37 @@ use Drupal\Core\Entity\EntityInterface;
   // Set module and key for the email.
   $module = 'demo_mail';
   $key = 'course_enrollment_single';
-  // Get the recipient email address.
-  $to = \Drupal::config('system.site')->get('mail'); // TODO: Get emails from the CustomEmailsConfigForm
-  // Prepare parameters for the email template
-  $params['student_name'] = $entity->label();
-  $params['course_name'] = $course_name;
-  $params['enrollment_date'] = date($enrollment_date);
-  // Get the language code of the current user.
-  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  // Get the recipient email addresses from the CustomEmailsConfigForm.
+  $config = \Drupal::config('custom_emails_config.settings');
+  $emails = $config->get('admin_emails');
 
-  $send = true;
+  foreach ($emails as $email) {
+    \Drupal::messenger()->addMessage(t('Sending email notification to ' . $email)); // Use error_log() for logging
 
-  // Send the email and handle the result.
-  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    // Prepare parameters for the email template.
+    $params['student_name'] = $entity->label();
+    $params['course_name'] = $course_name;
+    $params['enrollment_date'] = date($enrollment_date);
+    // Get the language code of the current user.
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $to = $email;
+    $send = true;
 
-  if ($result['result'] !== true) {
-    // Log an error if email sending fails.
-    \Drupal::logger('demo_mail')->error('Error sending email for course: @course_name. Details: @details', [
-      '@course_name' => $course_name,
-      '@details' => print_r($result, true),
-    ]);
-    // Display an error message to the user.
-    \Drupal::messenger()->addError(t('There was a problem sending the email for course: @course_name', ['@course_name' => $course_name]));
-  } else {
-    // Display a success message if email sending is successful.
-    \Drupal::messenger()->addMessage(t('Email for the following course: @course_name has been sent successfully.', ['@course_name' => $course_name]));
+    // Send the email and handle the result.
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+
+    if ($result['result'] !== true) {
+      // Log an error if email sending fails.
+      \Drupal::logger('demo_mail')->error('Error sending email for course: @course_name. Details: @details', [
+        '@course_name' => $course_name,
+        '@details' => print_r($result, true),
+      ]);
+      // Display an error message to the user.
+      \Drupal::messenger()->addError(t('There was a problem sending the email for course: @course_name', ['@course_name' => $course_name]));
+    } else {
+      // Display a success message if email sending is successful.
+      \Drupal::messenger()->addMessage(t('Email for the following course: @course_name has been sent successfully.', ['@course_name' => $course_name]));
+    }
   }
 }
 
@@ -121,20 +128,26 @@ use Drupal\Core\Entity\EntityInterface;
   // Specify the module and key for identifying the email template.
   $module = 'demo_mail';
   $key = 'course_enrollment_multiple';
-  // Retrieve the recipient email address from the site configuration.
-  $to = \Drupal::config('system.site')->get('mail');
+  // Get the recipient email addresses from the CustomEmailsConfigForm.
+  $config = \Drupal::config('custom_emails_config.settings');
+  $emails = $config->get('admin_emails');
 
+  foreach ($emails as $email) {
+  \Drupal::messenger()->addMessage(t('Sending email notification to ' . $email));
   $params['student_name'] = $entity->label();
   $params['course_names'] = implode(', ', array_map(function ($course) {
     return $course->label();
   }, $selected_courses));
   $params['enrollment_date'] = date($enrollment_date);
   $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $to = $email;
   $send = true;
+
 
   $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
   if ($result['result'] !== true) {
+    // Log an error if email sending fails.
     \Drupal::logger('demo_mail')->error('Error sending email for multiple courses. Details: @details', [
       '@details' => print_r($result, true),
     ]);
@@ -144,8 +157,11 @@ use Drupal\Core\Entity\EntityInterface;
       return $course->label();
     }, $selected_courses));
     \Drupal::messenger()->addMessage(t('Email for the following courses: @course_names has been sent successfully.', ['@course_names' => $course_names]));
+   }
   }
-}
+ }
+
+
 
 /**
  * Implements hook_theme().
@@ -170,4 +186,3 @@ use Drupal\Core\Entity\EntityInterface;
     ],
   ];
 }
-
