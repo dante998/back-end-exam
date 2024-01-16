@@ -40,6 +40,7 @@ module:
   image: 0
   inline_entity_form: 0
   inline_entity_menu_form: 0
+  json_api: 0
   language: 0
   link: 0
   maillog: 0

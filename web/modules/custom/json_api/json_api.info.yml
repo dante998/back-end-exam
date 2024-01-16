@@ -1,0 +1,5 @@
+name: Json Api
+type: module
+description: 'A simple Json api format response that lists the courses.'
+core_version_requirement: ^9 || ^10
+package: Custom

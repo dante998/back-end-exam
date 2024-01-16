@@ -1,0 +1,8 @@
+json_api.courses:
+  path: '/api/json/courses'
+  defaults:
+    _controller: '\Drupal\json_api\Controller\JsonApiController::renderApi'
+    _title: 'Json Api Courses'
+  methods: [GET]
+  requirements:
+    _permission: 'access content'
