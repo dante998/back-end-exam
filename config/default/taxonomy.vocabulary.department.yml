@@ -1,0 +1,8 @@
+uuid: e8aaed86-ac91-4fbd-a1ce-39eb8b758c91
+langcode: en
+status: true
+dependencies: {  }
+name: Department
+vid: department
+description: 'I ensure that courses can be categorized using taxonomies for department.'
+weight: 0

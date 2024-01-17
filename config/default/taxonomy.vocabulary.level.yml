@@ -1,0 +1,8 @@
+uuid: b6770adb-bfdc-4ab1-a9f0-4f591e68a9bc
+langcode: en
+status: true
+dependencies: {  }
+name: Level
+vid: level
+description: 'I ensure that courses can be categorized using taxonomies for level.'
+weight: 0

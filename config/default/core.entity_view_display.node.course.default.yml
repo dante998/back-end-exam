@@ -4,13 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.course.field_category
+    - field.field.node.course.field_department
     - field.field.node.course.field_description
     - field.field.node.course.field_end_date
     - field.field.node.course.field_external_resources
     - field.field.node.course.field_image
     - field.field.node.course.field_instructor
+    - field.field.node.course.field_level
     - field.field.node.course.field_referenced_resources
     - field.field.node.course.field_start_date
+    - field.field.node.course.field_subject
     - image.style.wide
     - node.type.course
   module:
@@ -31,6 +34,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 7
+    region: content
+  field_department:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
     region: content
   field_description:
     type: text_default
@@ -75,6 +86,14 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
+  field_level:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
   field_referenced_resources:
     type: entity_reference_revisions_entity_view
     label: above
@@ -92,6 +111,14 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_subject:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
     region: content
   links:
     settings: {  }

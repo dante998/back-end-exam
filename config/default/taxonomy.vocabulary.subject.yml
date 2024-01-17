@@ -1,0 +1,8 @@
+uuid: 4f7df411-17a4-41e4-898e-c057823b07ba
+langcode: en
+status: true
+dependencies: {  }
+name: Subject
+vid: subject
+description: 'I ensure that courses can be categorized using taxonomies for subject.'
+weight: 0
